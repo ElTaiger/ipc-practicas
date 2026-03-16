@@ -1,121 +1,129 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MiAppRockstar());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class JuegoRockstar {
+  final String titulo;
+  final String descripcion;
+  
+  // Como la imagen se llama igual que el título, ya no necesitamos la variable rutaImagen
+  JuegoRockstar(this.titulo, this.descripcion);
+}
 
-  // This widget is the root of your application.
+class MiAppRockstar extends StatelessWidget {
+  const MiAppRockstar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+      debugShowCheckedModeBanner: false,
+      title: 'Práctica 2 - Rockstar',
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xFF121212),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          elevation: 2,
+        ),
+        cardTheme: const CardThemeData(
+          color: Color(0xFF1E1E1E), 
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const PantallaListaJuegos(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class PantallaListaJuegos extends StatefulWidget {
+  const PantallaListaJuegos({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<PantallaListaJuegos> createState() => _PantallaListaJuegosState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class _PantallaListaJuegosState extends State<PantallaListaJuegos> {
+  
+  // Lista de juegos. Solo ponemos título y descripción.
+  final List<JuegoRockstar> misJuegos = [
+    JuegoRockstar('Grand Theft Auto', '1997/1998 - El inicio de todo en 2D.'),
+    JuegoRockstar('Midnight Club - Street Racing', 'Octubre 2000 - Carreras callejeras.'),
+    JuegoRockstar('Max Payne', 'Julio 2001 - El rey del Bullet Time.'),
+    JuegoRockstar('Grand Theft Auto III', 'Octubre 2001 - El salto al 3D.'),
+    JuegoRockstar('Grand Theft Auto - Vice City', 'Octubre 2002 - Clásico de los 80.'),
+    JuegoRockstar('Red Dead Revolver', 'Mayo 2004 - Inicio del Salvaje Oeste.'),
+    JuegoRockstar('Grand Theft Auto - San Andreas', 'Octubre 2004 - Un mundo inmenso.'),
+    JuegoRockstar('Bully', 'Octubre 2006 - Aventuras en el instituto.'),
+    JuegoRockstar('Grand Theft Auto IV', 'Abril 2008 - Alta definición.'),
+    JuegoRockstar('Red Dead Redemption', 'Mayo 2010 - La madurez de la saga.'),
+    JuegoRockstar('L.A. Noire', 'Mayo 2011 - Investigación policial.'),
+    JuegoRockstar('Max Payne 3', 'Mayo 2012 - La última entrega de Max.'),
+    JuegoRockstar('Grand Theft Auto V', 'Septiembre 2013 - El hito de ventas.'),
+    JuegoRockstar('Red Dead Redemption 2', 'Octubre 2018 - Arthur Morgan.'),
+    JuegoRockstar('Grand Theft Auto VI', 'Nov. 2026 - Regreso a Vice City.'),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text('Historia de Rockstar Games'),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: .center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+      body: ListView.builder(
+        itemCount: misJuegos.length,
+        itemBuilder: (context, index) {
+          final juego = misJuegos[index];
+          
+          return Card(
+            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: ListTile(
+              contentPadding: const EdgeInsets.all(10),
+              
+              // ==========================================
+              // MAGIA AQUÍ: Busca la imagen concatenando el título
+              // ==========================================
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.asset(
+                  'assets/${juego.titulo}.jpg', // Usa el título exacto para buscar el .jpg
+                  width: 50,
+                  height: 70,
+                  fit: BoxFit.cover, 
+                  // Si te equivocas en una letra del nombre del archivo, saldrá un icono gris
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(Icons.videogame_asset, size: 50, color: Colors.grey);
+                  },
+                ),
+              ),
+              title: Text(
+                juego.titulo, 
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+              ),
+              subtitle: Text(
+                juego.descripcion,
+                style: const TextStyle(color: Colors.white70),
+              ),
+              
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'La visualización detallada se desarrollará en la Fase 3',
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    backgroundColor: Colors.orange,
+                    behavior: SnackBarBehavior.floating,
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              },
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+          );
+        },
       ),
     );
   }
